@@ -1,0 +1,48 @@
+# Colors (Night Owl)
+colors:
+  # Default colors
+  primary:
+    background: '#011627'
+    foreground: '#d6deeb'
+
+  # Cursor colors
+  #
+  # Colors which should be used to draw the terminal cursor.
+  #
+  # Allowed values are CellForeground/CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  cursor:
+    # text: CellBackground
+    cursor: '#80a4c2'
+
+  # Selection colors
+  #
+  # Colors which should be used to draw the selection area.
+  #
+  # Allowed values are CellForeground/CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
+  selection:
+    text: '#ffffff'
+    background: '#1d3b53'
+
+  # Normal colors
+  normal:
+    black:   '#011627'
+    red:     '#eb2521'
+    green:   '#1bae58'
+    yellow:  '#ffe162'
+    blue:    '#4f87ff'
+    magenta: '#b167e2'
+    cyan:    '#1a9b83'
+    white:   '#d6deeb'
+
+  # Bright colors
+  bright:
+    black:   '#575656'
+    red:     '#ef5350'
+    green:   '#22da6e'
+    yellow:  '#ffeb95'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#21c7a8'
+    white:   '#f8fafc'

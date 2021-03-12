@@ -1,0 +1,14 @@
+# Timeout for commands executed by starship (in milliseconds).
+command_timeout = 1000
+
+[git_branch]
+truncation_length = 25
+
+[git_metrics]
+disabled = false
+
+[git_status]
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+

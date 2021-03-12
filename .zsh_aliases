@@ -1,0 +1,14 @@
+#####
+# EXA
+#####
+export EXA_ICON_SPACING=1
+
+alias ls='exa --icons --classify --group-directories-first --color-scale --oneline'
+alias ld='exa --icons --classify --group-directories-first --color-scale --oneline --only-dirs --all'
+alias ll='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git'
+alias la='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all'
+alias lC='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=changed'
+alias lM='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=modified'
+alias lS='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=size'
+alias lX='exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=extension'
+alias lt='exa --icons --tree --level=2'

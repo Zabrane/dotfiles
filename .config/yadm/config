@@ -1,0 +1,5 @@
+[yadm]
+	cipher = openssl
+[user]
+	email = eckertalex@protonmail.com
+	name = Alexander Eckert
