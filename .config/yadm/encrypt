@@ -1,4 +1,5 @@
 .gitconfig
+.config/git/mailmap
 .config/git/private.gitconfig
-.ssh/id_rsa*
+.ssh/id*
 .ssh/config

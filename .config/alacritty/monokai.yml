@@ -1,0 +1,52 @@
+# Colors (Monokai)
+colors:
+  # Default colors
+  primary:
+    background: "0x2d2a2e"
+    foreground: "0xfff1f3"
+
+  # Normal colors
+  normal:
+    black: "0x2d2a2e"
+    red: "0xfd6883"
+    green: "0xadda78"
+    yellow: "0xf9cc6c"
+    blue: "0x78dce8"
+    magenta: "0xa8a9eb"
+    cyan: "0x5adec4"
+    white: "0xffffff"
+
+  # Bright colors
+  bright:
+    black: "0x221f22"
+    red: "0xe53265"
+    green: "0x96e309"
+    yellow: "0xf5d922"
+    blue: "0x28acf6"
+    magenta: "0x8838ff"
+    cyan: "0x2fd6b5"
+    white: "0xfcfcfa"
+
+  # Dim colors
+  #
+  # If the dim colors are not set, they will be calculated automatically based
+  # on the `normal` colors.
+  #dim:
+  #  black:   '0x000000'
+  #  red:     '0x8c3336'
+  #  green:   '0x7a8530'
+  #  yellow:  '0x97822e'
+  #  blue:    '0x506d8f'
+  #  magenta: '0x80638e'
+  #  cyan:    '0x497e7a'
+  #  white:   '0x9a9a9a'
+
+  # Indexed Colors
+  #
+  # The indexed colors include all colors from 16 to 256.
+  # When these are not set, they're filled with sensible defaults.
+  #
+  # Example:
+  #   `- { index: 16, color: '0xff00ff' }`
+  #
+indexed_colors: []
