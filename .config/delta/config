@@ -4,7 +4,7 @@
 [delta "delta-theme"]
     # author: https://github.com/eckertalex
     dark = true
-    syntax-theme = "Monokai Extended"
+    syntax-theme = "catppuccin"
     plus-style = syntax "#003800"
     minus-style = syntax "#3f0001"
     features = side-by-side line-numbers decorations

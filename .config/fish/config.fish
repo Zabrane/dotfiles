@@ -1,11 +1,17 @@
-set -x EDITOR code
-set -x VISUAL lvim
+set -gx EDITOR code
+set -gx VISUAL nvim
 
 set OPENSSL "/usr/local/opt/openssl@1.1/bin"
 set CROWDIN "/usr/local/opt/crowdin@2/bin"
 set CARGO_HOME "$HOME/.cargo/bin"
 set -x VOLTA_HOME "$HOME/.volta"
-set -x PATH $PATH "$VOLTA_HOME/bin" $OPENSSL $CROWDIN $CARGO_HOME "$HOME/.local/bin"
+set -x ANDROID_HOME "$HOME/Library/Android/sdk"
+set ANDROID_SDK_ROOT "$HOME/Library/Android/sdk"
+set -x PATH $PATH "$VOLTA_HOME/bin" $OPENSSL $CROWDIN $CARGO_HOME "$ANDROID_SDK_ROOT/emulator" "$ANDROID_SDK_ROOT/platform-tools" "$HOME/.local/bin"
+
+# Bun
+set -Ux BUN_INSTALL "$HOME/.bun"
+set -px --path PATH "$HOME/.bun/bin"
 
 # SSH
 ssh-add -q $HOME/.ssh/id_rsa
@@ -13,6 +19,10 @@ ssh-add -q $HOME/.ssh/id_ed25519_bitbucket_goto
 ssh-add -q $HOME/.ssh/id_ed25519_github_goto
 
 # FZF
+set -g FZF_DEFAULT_OPTS "\
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 set -g FZF_CTRL_T_COMMAND "command find -L \$dir -type f 2> /dev/null | sed '1d; s#^\./##'"
 set -g FZF_CTRL_T_OPTS "--preview 'bat --style=numbers --color=always --line-range :500 {}'"
 
@@ -45,17 +55,22 @@ set fish_color_autosuggestion d6deeb
 # Aliases
 #########
 
-# EXA
-set -x EXA_ICON_SPACING 1
-alias ls 'exa --icons --classify --group-directories-first --color-scale --oneline'
-alias ld 'exa --icons --classify --group-directories-first --color-scale --oneline --only-dirs --all'
-alias ll 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git'
-alias la 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all'
-alias lC 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=changed'
-alias lM 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=modified'
-alias lS 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=size'
-alias lX 'exa --icons --classify --group-directories-first --color-scale --header --long --time-style=long-iso --binary --grid --git --all --sort=extension'
-alias lt 'exa --icons --tree --level=2'
+# neovim
+alias nv nvim
+
+# Kitty
+abbr -a icat kitty +kitten icat
+
+# LSD
+alias ls 'lsd --classify'
+alias ll 'lsd --classify --header --long'
+alias la 'lsd --classify --header --long --almost-all'
+alias lC 'lsd --classify --header --long --almost-all --sort time --group-dirs none'
+alias lS 'lsd --classify --header --long --almost-all --sort size --group-dirs none'
+alias lt 'lsd --tree --depth=2'
+
+# gfold git tool
+alias gfld '~/.cargo/bin/gfold'
 
 # Yarn
 abbr -a y yarn
@@ -78,47 +93,39 @@ abbr -a npmt npm test
 abbr -a npmR npm run
 
 # bun
-abbr -a bur bun run
-abbr -a burd bun run dev
+abbr -a b bun run
+abbr -a bd bun run dev
 abbr -a bst bun run start
 abbr -a bb bun run build
+abbr -a bln bun run lint
+abbr -a bt bun run test
+abbr -a bf bun run format
 
 # git
 function fco -d "Use `fzf` to choose which branch to check out" --argument-names branch
-  set -q branch[1]; or set branch ''
-  git for-each-ref --format='%(refname:short)' refs/remotes | cut -c 8- | fzf --height 10% --layout=reverse --border --query=$branch --select-1 | xargs git checkout
+    set -q branch[1]; or set branch ''
+    git for-each-ref --format='%(refname:short)' refs/remotes | cut -c 8- | fzf --height 10% --layout=reverse --border --query=$branch --select-1 | xargs git checkout
 end
 
 function guncommit -d "Undo last commit"
-  git reset --soft HEAD~1
+    git reset --soft HEAD~1
 end
 
 function gunadd -d "Unstage files"
-  git reset HEAD
+    git reset HEAD
 end
 
 function gprev -d "Checkout last branch"
-  git checkout @{-1}
+    git checkout @{-1}
 end
 
 function gdiscard -d "Discard changes in a (list of) file(s) in working tree"
-  git checkout -- $argv
+    git checkout -- $argv
 end
 
 function gcleanout -d "Clean and discard changes and untracked files in working tree"
-  git clean -df && git checkout -- .
-end
-
-# git diff before commit
-function gg -d "Open broot with git diff"
-    br --conf ~/.config/broot/git-diff-conf.toml --git-status
+    git clean -df && git checkout -- .
 end
 
 zoxide init fish | source
 starship init fish | source
-mcfly init fish | source
-mcfly_key_bindings
-
-# Bun
-set -Ux BUN_INSTALL "$HOME/.bun"
-set -px --path PATH "$HOME/.bun/bin"

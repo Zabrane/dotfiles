@@ -1,5 +1,7 @@
 .gitconfig
 .config/git/mailmap
 .config/git/private.gitconfig
+.config/gita/repos.csv
+.config/gita/groups.csv
 .ssh/id*
 .ssh/config
